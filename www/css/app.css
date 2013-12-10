@@ -35,7 +35,6 @@ h1,h2,h3,h4,h5 {
 
 #main-content {
   color: #fff;
-  height: 900px;
   padding: 10px;
 }
 
@@ -73,9 +72,15 @@ h1,h2,h3,h4,h5 {
 }
 
 .scroll-refresher {
+  overflow: visible;
+}
+.ionic-refresher-content {
   background-color: rgba(0,0,0,0.4);
-  height: 500px;
-  margin-top: -500px;
+  height: 400px;
+  bottom: 0;
+}
+.ionic-refresher-content i {
+  margin-top: 360px;
 }
 /** 
  * Current weather
