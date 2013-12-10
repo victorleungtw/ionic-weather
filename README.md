@@ -1,6 +1,16 @@
-ionic-angular-cordova-seed
+Ionic Weather App
 ==========================
 
-The perfect starting point for an Ionic project.
+A simple Ionic-based Weather app, inspired by Yahoo! Weather.
 
-- [Ionic Tutorials](http://ionicframework.com/tutorials/)
+To build, install cordova, then run:
+
+```bash
+$ cordova platform add ios
+$ cordova build ios
+$ cordova emulate ios
+```
+
+Substitute ios for android above to test on Android.
+
+Created by [@maxlynch](http://twitter.com/maxlynch) for the [Ionic Framework](http://ionicframework.com/)
