@@ -2572,13 +2572,14 @@ body, .ionic-body {
   overflow: hidden;
   -webkit-backface-visibility: hidden;
   margin-top: -1px;
-  width: auto; }
+  width: auto;
+  height: auto; }
 
 .scroll-view {
   overflow: hidden;
+  position: relative;
   -webkit-backface-visibility: hidden;
-  margin-top: -1px;
-  width: auto; }
+  margin-top: -1px; }
 
 /**
  * Scroll is the scroll view component available for complex and custom
@@ -2601,6 +2602,31 @@ body, .ionic-body {
   transform-origin: left top;
   white-space: nowrap;
   -webkit-backface-visibility: hidden; }
+
+.scroll-bar {
+  position: absolute;
+  z-index: 9999; }
+
+.scroll-bar-h {
+  height: 3px;
+  left: 2px;
+  right: 2px;
+  bottom: 0; }
+  .scroll-bar-h .scroll-bar-indicator {
+    height: 100%; }
+
+.scroll-bar-v {
+  width: 3px;
+  bottom: 2px;
+  top: 2px;
+  right: 1px; }
+  .scroll-bar-v .scroll-bar-indicator {
+    width: 100%; }
+
+.scroll-bar-indicator {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 2px; }
 
 .scroll-refresher {
   overflow: hidden;
@@ -3953,7 +3979,9 @@ button.item.item-button-right {
   padding-right: 75px; }
 
 .item-button-right > .button,
-.item-button-right .item-content > .button {
+.item-button-right .item-content > .button,
+.item-button-right > .buttons,
+.item-button-right .item-content > .buttons {
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -3972,11 +4000,20 @@ button.item.item-button-right {
   min-height: 32px;
   font-size: 32px; }
   .item-button-right > .button .icon,
-  .item-button-right .item-content > .button .icon {
+  .item-button-right .item-content > .button .icon,
+  .item-button-right > .buttons .icon,
+  .item-button-right .item-content > .buttons .icon {
     position: relative;
     left: auto;
     width: auto;
     line-height: 31px; }
+  .item-button-right > .button > .button,
+  .item-button-right .item-content > .button > .button,
+  .item-button-right > .buttons > .button,
+  .item-button-right .item-content > .buttons > .button {
+    min-height: 32px;
+    font-size: 32px;
+    margin: 0px 2px; }
 
 /**
  * Auto Right Arrow Icon
