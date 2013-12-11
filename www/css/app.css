@@ -28,6 +28,20 @@ body {
 .bg-fade > .ng-leave-active {
   opacity: 0;
 }
+
+.wunderground-logo {
+  width: 100px;
+  height: 14px;
+  background: url('../img/wunderground.png') no-repeat transparent;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+  .wunderground-logo {
+    background: url('../img/wunderground@2x.png') no-repeat transparent;
+    background-size: 100px 14px;
+  }
+}
+
 h1,h2,h3,h4,h5 {
   color: #fff;
   font-weight: 300;
@@ -181,6 +195,12 @@ h1,h2,h3,h4,h5 {
   display: inline-block;
   margin-right: 10px;
   text-align: center;
+}
+
+#forecast .wunderground-logo {
+  float: right;
+  margin-top: 4px;
+  margin-right: 4px;
 }
 
 /**
