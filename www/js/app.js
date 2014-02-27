@@ -1,6 +1,6 @@
 angular.module('ionic.weather', ['ionic', 'ionic.weather.services', 'ionic.weather.filters', 'ionic.weather.directives'])
 
-.constant('WUNDERGROUND_API_KEY', '310d26e3835ba066')
+.constant('WUNDERGROUND_API_KEY', '1cc2d3de40fa5af0')
 
 .constant('FLICKR_API_KEY', '504fd7414f6275eb5b657ddbfba80a2c')
 
