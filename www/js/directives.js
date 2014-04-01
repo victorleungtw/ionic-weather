@@ -7,7 +7,9 @@ angular.module('ionic.weather.directives', [])
   'rain': 'ion-ios7-rainy-outline',
   'tstorms': 'ion-ios7-thunderstorm-outline',
   'sunny': 'ion-ios7-sunny-outline',
-  'nt_clear': 'ion-ios7-moon-outline'
+  'clear-day': 'ion-ios7-sunny-outline',
+  'nt_clear': 'ion-ios7-moon-outline',
+  'clear-night': 'ion-ios7-moon-outline'
 })
 
 .directive('weatherIcon', function(WEATHER_ICONS) {
@@ -88,23 +90,16 @@ angular.module('ionic.weather.directives', [])
 
           if(current) {
             if(units == 'f') {
-              $scope.currentTemp = Math.floor(current.temp_f);
+              $scope.currentTemp = Math.floor(current.currently.temperature);
             } else {
-              $scope.currentTemp = Math.floor(current.temp_c);
+              $scope.currentTemp = Math.floor(current.currently.temperature);
             }
-          }
-        });
-
-        $scope.$watch('forecast', function(forecast) {
-          var units = Settings.get('tempUnits');
-
-          if(forecast) {
             if(units == 'f') {
-              $scope.highTemp = forecast.forecastday[0].high.fahrenheit;
-              $scope.lowTemp = forecast.forecastday[0].low.fahrenheit;
+              $scope.highTemp = Math.floor(current.daily.data[0].temperatureMax);
+              $scope.lowTemp = Math.floor(current.daily.data[0].temperatureMin);
             } else {
-              $scope.highTemp = forecast.forecastday[0].high.celsius;
-              $scope.lowTemp = forecast.forecastday[0].low.celsius;
+              $scope.highTemp = Math.floor(current.daily.data[0].temperatureMax);
+              $scope.lowTemp = Math.floor(current.daily.data[0].temperatureMin);
             }
           }
         });
@@ -114,7 +109,7 @@ angular.module('ionic.weather.directives', [])
         var windowHeight = window.innerHeight;
         var thisHeight = $element[0].offsetHeight;
         var headerHeight = document.querySelector('#header').offsetHeight;
-        $element[0].style.paddingTop = (windowHeight - thisHeight) + 'px';
+        $element[0].style.paddingTop = (windowHeight - (thisHeight + 20)) + 'px';
         angular.element(document.querySelector('.content')).css('-webkit-overflow-scrolling', 'auto');
         $timeout(function() {
           angular.element(document.querySelector('.content')).css('-webkit-overflow-scrolling', 'touch');
@@ -167,7 +162,7 @@ angular.module('ionic.weather.directives', [])
         }
         amt = Math.min(0.6, st / 1000);
 
-        window.rAF(function() {
+        ionic.requestAnimationFrame(function() {
           header.style.opacty = 1 - amt;
           if(bg) {
             bg.style.opacity = 1 - amt;

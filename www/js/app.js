@@ -2,6 +2,8 @@ angular.module('ionic.weather', ['ionic', 'ionic.weather.services', 'ionic.weath
 
 .constant('WUNDERGROUND_API_KEY', '1cc2d3de40fa5af0')
 
+.constant('FORECASTIO_KEY', '4cd3c5673825a361eb5ce108103ee84a')
+
 .constant('FLICKR_API_KEY', '504fd7414f6275eb5b657ddbfba80a2c')
 
 .filter('int', function() {
@@ -10,12 +12,14 @@ angular.module('ionic.weather', ['ionic', 'ionic.weather.services', 'ionic.weath
   };
 })
 
-.controller('WeatherCtrl', function($scope, $timeout, $rootScope, Weather, Geo, Flickr, Modal, Platform) {
+.controller('WeatherCtrl', function($scope, $timeout, $rootScope, Weather, Geo, Flickr, $ionicModal, $ionicPlatform) {
   var _this = this;
 
-  Platform.ready(function() {
+  $ionicPlatform.ready(function() {
     // Hide the status bar
-    StatusBar.hide();
+    if(window.StatusBar) {
+      StatusBar.hide();
+    }
   });
 
   $scope.activeBgImageIndex = 0;
@@ -23,7 +27,7 @@ angular.module('ionic.weather', ['ionic', 'ionic.weather.services', 'ionic.weath
   $scope.showSettings = function() {
     if(!$scope.settingsModal) {
      // Load the modal from the given template URL
-      Modal.fromTemplateUrl('settings.html', function(modal) {
+      $ionicModal.fromTemplateUrl('settings.html', function(modal) {
         $scope.settingsModal = modal;
         $scope.settingsModal.show();
       }, {
@@ -48,29 +52,17 @@ angular.module('ionic.weather', ['ionic', 'ionic.weather.services', 'ionic.weath
     });
   };
 
-  this.getForecast = function(lat, lng) {
-    Weather.getForecast(lat, lng).then(function(resp) {
-      //console.log('Forecast', resp);
-      $scope.forecast = resp.forecast.simpleforecast;
-    }, function(error) {
-      alert('Unable to get forecast. Try again later');
-      console.error(error);
-    });
-
-    Weather.getHourly(lat, lng).then(function(resp) {
-      $scope.hourly = resp.hourly_forecast;
-      //console.log($scope.hourly);
-      $rootScope.$broadcast('scroll.refreshComplete');
-    }, function(error) {
-      alert('Unable to get forecast. Try again later.');
-      console.error(error);
-    });
-  };
-
-  this.getCurrent = function(lat, lng) {
+  this.getCurrent = function(lat, lng, locString) {
     Weather.getAtLocation(lat, lng).then(function(resp) {
-      $scope.current = resp.current_observation;
-      _this.getForecast(resp.location.lat, resp.location.lon);
+      /*
+      if(resp.response && resp.response.error) {
+        alert('This Wunderground API Key has exceeded the free limit. Please use your own Wunderground key');
+        return;
+      }
+      */
+      $scope.current = resp.data;
+      console.log('GOT CURRENT', $scope.current);
+      $rootScope.$broadcast('scroll.refreshComplete');
     }, function(error) {
       alert('Unable to get current conditions');
       console.error(error);
@@ -92,6 +84,7 @@ angular.module('ionic.weather', ['ionic', 'ionic.weather.services', 'ionic.weath
       var lng = position.coords.longitude;
 
       Geo.reverseGeocode(lat, lng).then(function(locString) {
+        $scope.currentLocationString = locString;
         _this.getBackgroundImage(lat, lng, locString);
       });
       _this.getCurrent(lat, lng);

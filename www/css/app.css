@@ -57,7 +57,7 @@ h1,h2,h3,h4,h5 {
 }
 
 .ionic-refresher-content {
-  color: rgb(255,255,255);
+  color: rgb(255,255,255) !important;
   text-shadow: none;
 }
 
@@ -185,11 +185,11 @@ h1,h2,h3,h4,h5 {
 
 
 #forecast-scroll {
-  height: 70px;
   margin: 10px 0px;
 }
-#forecast-scroll .scroll {
-  width: 1540px;
+#hourly-forecast {
+  width: 2250px;
+  height: 70px;
 }
 .hourly-hour {
   display: inline-block;
@@ -197,10 +197,13 @@ h1,h2,h3,h4,h5 {
   text-align: center;
 }
 
-#forecast .wunderground-logo {
+#forecast .credit {
   float: right;
   margin-top: 4px;
   margin-right: 4px;
+}
+#forecast .credit a {
+  color: #fff;
 }
 
 /**

@@ -19,11 +19,8 @@ angular.module('ionic.weather.filters', ['ionic.weather.services'])
   };
 })
 
-.filter('hourFormat', function() {
+.filter('tempInt', function() {
   return function(input) {
-    var h = parseInt(input);
-    var postfix = h >= 12 ? 'PM' : 'AM';
-    var h12 = (h % 12) || 12;
-    return h12 + postfix;
+    return parseInt(input);
   }
 });

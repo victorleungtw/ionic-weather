@@ -1,3 +1,100 @@
+var wundergroundWeather = ['$q', '$resource', 'WUNDERGROUND_API_KEY', function($q, $resource, WUNDERGROUND_API_KEY) {
+  var baseUrl = 'http://api.wunderground.com/api/' + WUNDERGROUND_API_KEY;
+
+  var locationResource = $resource(baseUrl + '/geolookup/conditions/q/:coords.json', {
+    callback: 'JSON_CALLBACK'
+  }, {
+    get: {
+      method: 'JSONP'
+    }
+  });
+
+  var forecastResource = $resource(baseUrl + '/forecast/q/:coords.json', {
+    callback: 'JSON_CALLBACK'
+  }, {
+    get: {
+      method: 'JSONP'
+    }
+  });
+
+  var hourlyResource = $resource(baseUrl + '/hourly/q/:coords.json', {
+    callback: 'JSON_CALLBACK'
+  }, {
+    get: {
+      method: 'JSONP'
+    }
+  });
+
+  return {
+    getForecast: function(lat, lng) {
+      var q = $q.defer();
+
+      forecastResource.get({
+        coords: lat + ',' + lng
+      }, function(resp) {
+        q.resolve(resp);
+      }, function(httpResponse) {
+        q.reject(httpResponse);
+      });
+
+      return q.promise;
+    },
+
+    getHourly: function(lat, lng) {
+      var q = $q.defer();
+
+      hourlyResource.get({
+        coords: lat + ',' + lng
+      }, function(resp) {
+        q.resolve(resp);
+      }, function(httpResponse) {
+        q.reject(httpResponse);
+      });
+
+      return q.promise;
+    },
+
+    getAtLocation: function(lat, lng) {
+      var q = $q.defer();
+
+      locationResource.get({
+        coords: lat + ',' + lng
+      }, function(resp) {
+        q.resolve(resp);
+      }, function(error) {
+        q.reject(error);
+      });
+
+      return q.promise;
+    }
+  }
+}];
+
+var forecastioWeather = ['$q', '$resource', '$http', 'FORECASTIO_KEY', function($q, $resource, $http, FORECASTIO_KEY) {
+  var url = 'https://api.forecast.io/forecast/' + FORECASTIO_KEY + '/';
+
+  var weatherResource = $resource(url, {
+    callback: 'JSON_CALLBACK',
+  }, {
+    get: {
+      method: 'JSONP'
+    }
+  });
+
+  return {
+    getAtLocation: function(lat, lng) {
+37.8267,-122.423
+
+      return $http.jsonp(url + lat + ',' + lng + '?callback=JSON_CALLBACK');
+    },
+    getForecast: function(locationString) {
+    },
+    getHourly: function(locationString) {
+    }
+  }
+}];
+
+
 angular.module('ionic.weather.services', ['ngResource'])
 
 .constant('DEFAULT_SETTINGS', {
@@ -73,7 +170,7 @@ angular.module('ionic.weather.services', ['ngResource'])
                   parts.push(a.long_name);
                 } else if(!foundState && types[j] == 'administrative_area_level_1') {
                   foundState = true;
-                  //parts.push(a.long_name);
+                  parts.push(a.short_name);
                 }
               }
             }
@@ -140,74 +237,4 @@ angular.module('ionic.weather.services', ['ngResource'])
   };
 })
 
-.factory('Weather', function($q, $resource, WUNDERGROUND_API_KEY) {
-  var baseUrl = 'http://api.wunderground.com/api/' + WUNDERGROUND_API_KEY;
-
-  var locationResource = $resource(baseUrl + '/geolookup/conditions/q/:coords.json', {
-    callback: 'JSON_CALLBACK'
-  }, {
-    get: {
-      method: 'JSONP'
-    }
-  });
-
-  var forecastResource = $resource(baseUrl + '/forecast/q/:coords.json', {
-    callback: 'JSON_CALLBACK'
-  }, {
-    get: {
-      method: 'JSONP'
-    }
-  });
-
-  var hourlyResource = $resource(baseUrl + '/hourly/q/:coords.json', {
-    callback: 'JSON_CALLBACK'
-  }, {
-    get: {
-      method: 'JSONP'
-    }
-  });
-
-  return {
-    getForecast: function(lat, lng) {
-      var q = $q.defer();
-
-      forecastResource.get({
-        coords: lat + ',' + lng
-      }, function(resp) {
-        q.resolve(resp);
-      }, function(httpResponse) {
-        q.reject(httpResponse);
-      });
-
-      return q.promise;
-    },
-
-    getHourly: function(lat, lng) {
-      var q = $q.defer();
-
-      hourlyResource.get({
-        coords: lat + ',' + lng
-      }, function(resp) {
-        q.resolve(resp);
-      }, function(httpResponse) {
-        q.reject(httpResponse);
-      });
-
-      return q.promise;
-    },
-
-    getAtLocation: function(lat, lng) {
-      var q = $q.defer();
-
-      locationResource.get({
-        coords: lat + ',' + lng
-      }, function(resp) {
-        q.resolve(resp);
-      }, function(error) {
-        q.reject(error);
-      });
-
-      return q.promise;
-    }
-  }
-})
+.factory('Weather', forecastioWeather);
