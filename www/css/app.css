@@ -65,7 +65,7 @@ h1,h2,h3,h4,h5 {
  * Header
  */
 #header {
-  background-color: transparent;
+  background-color: transparent !important;
   height: 44px;
 }
 #header > * {
@@ -183,6 +183,10 @@ h1,h2,h3,h4,h5 {
   color: #4a87ee;
 }
 
+
+.no-header {
+  top: 0 !important;
+}
 
 #forecast-scroll {
   margin: 10px 0px;

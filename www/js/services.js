@@ -83,8 +83,6 @@ var forecastioWeather = ['$q', '$resource', '$http', 'FORECASTIO_KEY', function(
 
   return {
     getAtLocation: function(lat, lng) {
-37.8267,-122.423
-
       return $http.jsonp(url + lat + ',' + lng + '?callback=JSON_CALLBACK');
     },
     getForecast: function(locationString) {
