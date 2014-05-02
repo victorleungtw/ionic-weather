@@ -1,3 +1,6 @@
+/**
+ * Wunderground's API pricing is silly, so it's removed for now.
+
 var wundergroundWeather = ['$q', '$resource', 'WUNDERGROUND_API_KEY', function($q, $resource, WUNDERGROUND_API_KEY) {
   var baseUrl = 'http://api.wunderground.com/api/' + WUNDERGROUND_API_KEY;
 
@@ -69,6 +72,7 @@ var wundergroundWeather = ['$q', '$resource', 'WUNDERGROUND_API_KEY', function($
     }
   }
 }];
+*/
 
 var forecastioWeather = ['$q', '$resource', '$http', 'FORECASTIO_KEY', function($q, $resource, $http, FORECASTIO_KEY) {
   var url = 'https://api.forecast.io/forecast/' + FORECASTIO_KEY + '/';
@@ -153,8 +157,8 @@ angular.module('ionic.weather.services', ['ngResource'])
       }, function(results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
           console.log('Reverse', results);
-          if(results.length > 0) {
-            var r = results[0];
+          if(results.length > 1) {
+            var r = results[1];
             var a, types;
             var parts = [];
             var foundLocality = false;
@@ -173,7 +177,7 @@ angular.module('ionic.weather.services', ['ngResource'])
               }
             }
             console.log('Reverse', parts);
-            q.resolve(parts.join(' '));
+            q.resolve(parts.join(', '));
           }
         } else {
           console.log('reverse fail', results, status);
