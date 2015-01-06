@@ -202,7 +202,7 @@ angular.module('ionic.weather.services', ['ngResource'])
 })
 
 .factory('Flickr', function($q, $resource, FLICKR_API_KEY) {
-  var baseUrl = 'http://api.flickr.com/services/rest/'
+  var baseUrl = 'https://api.flickr.com/services/rest/'
 
 
   var flickrSearch = $resource(baseUrl, {
