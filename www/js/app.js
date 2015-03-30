@@ -12,7 +12,7 @@ angular.module('ionic.fantasy', ['ionic', 'ionic.fantasy.services', 'ionic.fanta
   };
 })
 
-.controller('WeatherCtrl', function($scope, $timeout, $rootScope, Weather, Geo, Flickr, $ionicModal, $ionicPlatform) {
+.controller('StatsCtrl', function($scope, $timeout, $rootScope, Weather, Geo, Flickr, $ionicModal, $ionicPlatform) {
   var _this = this;
 
   $ionicPlatform.ready(function() {
@@ -23,22 +23,6 @@ angular.module('ionic.fantasy', ['ionic', 'ionic.fantasy.services', 'ionic.fanta
   });
 
   $scope.activeBgImageIndex = 0;
-
-  $scope.showSettings = function() {
-    if(!$scope.settingsModal) {
-     // Load the modal from the given template URL
-      $ionicModal.fromTemplateUrl('settings.html', function(modal) {
-        $scope.settingsModal = modal;
-        $scope.settingsModal.show();
-      }, {
-        // The animation we want to use for the modal entrance
-        animation: 'slide-in-up'
-      });
-    } else {
-      $scope.settingsModal.show();
-    }
-  };
-
 
   this.getBackgroundImage = function(lat, lng, locString) {
     Flickr.search(locString, lat, lng).then(function(resp) {
@@ -54,12 +38,6 @@ angular.module('ionic.fantasy', ['ionic', 'ionic.fantasy.services', 'ionic.fanta
 
   this.getCurrent = function(lat, lng, locString) {
     Weather.getAtLocation(lat, lng).then(function(resp) {
-      /*
-      if(resp.response && resp.response.error) {
-        alert('This Wunderground API Key has exceeded the free limit. Please use your own Wunderground key');
-        return;
-      }
-      */
       $scope.current = resp.data;
       console.log('GOT CURRENT', $scope.current);
       $rootScope.$broadcast('scroll.refreshComplete');
@@ -95,18 +73,3 @@ angular.module('ionic.fantasy', ['ionic', 'ionic.fantasy.services', 'ionic.fanta
 
   $scope.refreshData();
 })
-
-.controller('SettingsCtrl', function($scope, Settings) {
-  $scope.settings = Settings.getSettings();
-
-  // Watch deeply for settings changes, and save them
-  // if necessary
-  $scope.$watch('settings', function(v) {
-    Settings.save();
-  }, true);
-
-  $scope.closeSettings = function() {
-    $scope.modal.hide();
-  };
-
-});

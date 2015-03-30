@@ -96,7 +96,7 @@ h1,h2,h3,h4,h5 {
 .ionic-refresher-content i {
   margin-top: 360px;
 }
-/** 
+/**
  * Current weather
  */
 
@@ -130,14 +130,14 @@ h1,h2,h3,h4,h5 {
 /**
  * Forecast and details
  */
-.weather-box {
+.statistics-box {
   background-color: rgba(0,0,0,0.2);
   padding: 9px;
   margin: 10px 0px;
   color: rgba(255,255,255,0.9);
 }
 
-.weather-box .title {
+.statistics-box .title {
   color: rgba(255,255,255,0.9);
   font-weight: normal;
   margin: 0;
@@ -146,26 +146,26 @@ h1,h2,h3,h4,h5 {
 }
 
 
-.weather-box .row {
+.statistics-box .row {
   border-bottom: 1px dotted rgba(255,255,255,0.3);
   margin: 0;
   padding: 0;
 }
-.weather-box .col {
+.statistics-box .col {
   text-align: center;
 }
-.weather-box .col:first-child {
+.statistics-box .col:first-child {
   text-align: left;
 }
-.weather-box .col:last-child {
+.statistics-box .col:last-child {
   text-align: right;
 }
 
-.weather-box span {
+.statistics-box span {
   vertical-align: middle;
 }
 
-.weather-box .icon {
+.statistics-box .icon {
   font-size: 42px;
   line-height: 24px;
   vertical-align: middle;
@@ -207,22 +207,5 @@ h1,h2,h3,h4,h5 {
   margin-right: 4px;
 }
 #forecast .credit a {
-  color: #fff;
-}
-
-/**
- * Settings modal
- */
-
-#settings-modal {
-  background-color: rgba(0,0,0,0.8);
-}
-
-#settings-modal .item {
-  background-color: rgba(0,0,0,0.9);
-  border: none;
-  color: #fff;
-}
-#settings-modal .input-label {
   color: #fff;
 }
