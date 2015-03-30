@@ -2,10 +2,6 @@ angular.module('ionic.fantasy', ['ionic', 'ionic.fantasy.services', 'ionic.fanta
 
 .constant('WUNDERGROUND_API_KEY', 'd7c7ab8633af5b3a')
 
-.constant('FORECASTIO_KEY', '4cd3c5673825a361eb5ce108103ee84a')
-
-.constant('FLICKR_API_KEY', '504fd7414f6275eb5b657ddbfba80a2c')
-
 .filter('int', function() {
   return function(v) {
     return parseInt(v) || '';
@@ -63,9 +59,10 @@ angular.module('ionic.fantasy', ['ionic', 'ionic.fantasy.services', 'ionic.fanta
         $scope.currentLocationString = locString;
         _this.getBackgroundImage(lat, lng, locString);
       });
+
+
       _this.getCurrent(lat, lng);
-    }, function(error) {
-      alert('Unable to get current location: ' + error);
+
     });
   };
 

@@ -28,8 +28,7 @@
 
       <ion-header-bar id="header" class="bar bar-header bar-clear">
         <h1 class="title">
-          <span class="city"><i id="city-nav-icon" class="icon ion-navigate"></i> {{currentLocationString}}</span><br>
-          <current-time localtz="current.local_tz_short"></current-time>
+          <span class="team"><i id="city-nav-icon" class="icon ion-navigate"></i> Team Awesome</span><br>
         </h1>
       </ion-header-bar>
 
@@ -37,6 +36,8 @@
         <ion-refresher on-refresh="refreshData()"></ion-refresher>
         <div id="main-content">
           <current-statistics></current-statistics>
+          <forecast></forecast>
+          <forecast></forecast>
           <forecast></forecast>
         </div>
       </ion-content>

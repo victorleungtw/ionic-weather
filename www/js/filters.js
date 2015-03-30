@@ -9,7 +9,6 @@ angular.module('ionic.fantasy.filters', ['ionic.fantasy.services'])
   };
 })
 
-// Silly Wunderground uses a different name for f/c in the hourly forecast
 .filter('tempEnglish', function(Settings) {
   return function(input) {
     if(Settings.getTempUnits() == 'f') {

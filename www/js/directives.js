@@ -37,25 +37,6 @@ angular.module('ionic.fantasy.directives', [])
   }
 })
 
-.directive('currentTime', function($timeout, $filter) {
-  return {
-    restrict: 'E',
-    replace: true,
-    template: '<span class="current-time">{{currentTime}}</span>',
-    scope: {
-      localtz: '=',
-    },
-    link: function($scope, $element, $attr) {
-      $timeout(function checkTime() {
-        if($scope.localtz) {
-          $scope.currentTime = $filter('date')(+(new Date), 'h:mm') + $scope.localtz;
-        }
-        $timeout(checkTime, 500);
-      });
-    }
-  }
- })
-
 .directive('currentStatistics', function($timeout, $rootScope, Settings) {
   return {
     restrict: 'E',

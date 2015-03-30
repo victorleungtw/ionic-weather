@@ -1,5 +1,5 @@
-var forecastioWeather = ['$q', '$resource', '$http', 'FORECASTIO_KEY', function($q, $resource, $http, FORECASTIO_KEY) {
-  var url = 'https://api.forecast.io/forecast/' + FORECASTIO_KEY + '/';
+var forecastioWeather = ['$q', '$resource', '$http', function($q, $resource, $http) {
+  var url = 'https://api.forecast.io/forecast/' + '4cd3c5673825a361eb5ce108103ee84a' + '/';
 
   var weatherResource = $resource(url, {
     callback: 'JSON_CALLBACK',
@@ -10,12 +10,8 @@ var forecastioWeather = ['$q', '$resource', '$http', 'FORECASTIO_KEY', function(
   });
 
   return {
-    getAtLocation: function(lat, lng) {
-      return $http.jsonp(url + lat + ',' + lng + '?callback=JSON_CALLBACK');
-    },
-    getForecast: function(locationString) {
-    },
-    getHourly: function(locationString) {
+    getAtLocation: function() {
+      return $http.jsonp(url + '22.2814048' + ',' + '114.1574522' + '?callback=JSON_CALLBACK');
     }
   }
 }];
@@ -120,12 +116,13 @@ angular.module('ionic.fantasy.services', ['ngResource'])
         q.reject(error);
       });
 
+
       return q.promise;
     }
   };
 })
 
-.factory('Flickr', function($q, $resource, FLICKR_API_KEY) {
+.factory('Flickr', function($q, $resource) {
   var baseUrl = 'https://api.flickr.com/services/rest/'
 
 
@@ -134,7 +131,7 @@ angular.module('ionic.fantasy.services', ['ngResource'])
     group_id: '1463451@N25',
     safe_search: 1,
     jsoncallback: 'JSON_CALLBACK',
-    api_key: FLICKR_API_KEY,
+    api_key: '504fd7414f6275eb5b657ddbfba80a2c',
     format: 'json'
   }, {
     get: {
@@ -143,15 +140,15 @@ angular.module('ionic.fantasy.services', ['ngResource'])
   });
 
   return {
-    search: function(tags, lat, lng) {
+    search: function(tags) {
       var q = $q.defer();
 
       console.log('Searching flickr for tags', tags);
 
       flickrSearch.get({
-        tags: tags,
-        lat: lat,
-        lng: lng
+        tags: 'Hong Kong Island',
+        lat: '22.2814048',
+        lng: '114.1574522'
       }, function(val) {
         q.resolve(val);
       }, function(httpResponse) {
