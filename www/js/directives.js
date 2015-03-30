@@ -60,7 +60,7 @@ angular.module('ionic.fantasy.directives', [])
   return {
     restrict: 'E',
     replace: true,
-    templateUrl: 'templates/current-weather.html',
+    templateUrl: 'templates/current-statistics.html',
     scope: true,
     compile: function(element, attr) {
       return function($scope, $element, $attr) {

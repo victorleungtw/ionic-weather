@@ -97,17 +97,17 @@ h1,h2,h3,h4,h5 {
   margin-top: 360px;
 }
 /**
- * Current weather
+ * Current statistics
  */
 
-#current-weather {
+#current-statistics {
   height: 180px;
   box-sizing: content-box;
 }
-#current-weather > * {
+#current-statistics > * {
   color: #fff;
 }
-#current-weather .current-temp {
+#current-statistics .current-temp {
   font-size: 100px;
   font-weight: 100;
   margin: 0;
