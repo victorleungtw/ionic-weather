@@ -1,6 +1,6 @@
 angular.module('ionic.weather', ['ionic', 'ionic.weather.services', 'ionic.weather.filters', 'ionic.weather.directives'])
 
-.constant('WUNDERGROUND_API_KEY', '1cc2d3de40fa5af0')
+.constant('WUNDERGROUND_API_KEY', 'd7c7ab8633af5b3a')
 
 .constant('FORECASTIO_KEY', '4cd3c5673825a361eb5ce108103ee84a')
 
