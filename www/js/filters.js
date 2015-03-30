@@ -1,4 +1,4 @@
-angular.module('ionic.weather.filters', ['ionic.weather.services'])
+angular.module('ionic.fantasy.filters', ['ionic.fantasy.services'])
 
 .filter('temp', function(Settings) {
   return function(input) {

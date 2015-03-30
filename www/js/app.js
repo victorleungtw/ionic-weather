@@ -1,4 +1,4 @@
-angular.module('ionic.weather', ['ionic', 'ionic.weather.services', 'ionic.weather.filters', 'ionic.weather.directives'])
+angular.module('ionic.fantasy', ['ionic', 'ionic.fantasy.services', 'ionic.fantasy.filters', 'ionic.fantasy.directives'])
 
 .constant('WUNDERGROUND_API_KEY', 'd7c7ab8633af5b3a')
 

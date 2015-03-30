@@ -1,4 +1,4 @@
-angular.module('ionic.weather.directives', [])
+angular.module('ionic.fantasy.directives', [])
 
 .constant('WEATHER_ICONS', {
   'partlycloudy': 'ion-ios7-partlysunny-outline',
