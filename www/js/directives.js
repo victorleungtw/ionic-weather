@@ -12,14 +12,14 @@ angular.module('ionic.fantasy.directives', [])
   'clear-night': 'ion-ios7-person-outline'
 })
 
-.directive('weatherIcon', function(JERSEY_ICON) {
+.directive('jerseyIcon', function(JERSEY_ICON) {
   return {
     restrict: 'E',
     replace: true,
     scope: {
       icon: '='
     },
-    template: '<i class="icon" ng-class="weatherIcon"></i>',
+    template: '<i class="icon" ng-class="jerseyIcon"></i>',
     link: function($scope) {
 
       $scope.$watch('icon', function(v) {
@@ -28,9 +28,9 @@ angular.module('ionic.fantasy.directives', [])
         var icon = v;
 
         if(icon in JERSEY_ICON) {
-          $scope.weatherIcon = JERSEY_ICON[icon];
+          $scope.jerseyIcon = JERSEY_ICON[icon];
         } else {
-          $scope.weatherIcon = JERSEY_ICON['cloudy'];
+          $scope.jerseyIcon = JERSEY_ICON['cloudy'];
         }
       });
     }
@@ -56,7 +56,7 @@ angular.module('ionic.fantasy.directives', [])
   }
  })
 
-.directive('currentWeather', function($timeout, $rootScope, Settings) {
+.directive('currentStatistics', function($timeout, $rootScope, Settings) {
   return {
     restrict: 'E',
     replace: true,

@@ -5,7 +5,7 @@
     <div id="hourly-forecast">
       <div class="hourly-hour" ng-repeat="hour in current.hourly.data">
         <div class="time" ng-bind="hour.time * 1000 | date:'h a'"></div>
-        <weather-icon icon="hour.icon"></weather-icon>
+        <jersey-icon icon="hour.icon"></jersey-icon>
         <div class="temp">{{hour.temperature | tempInt}}&deg;</div>
       </div>
     </div>
@@ -13,7 +13,7 @@
 
   <div class="row" ng-repeat="day in current.daily.data">
     <div class="col"><span ng-bind="day.time * 1000 | date:'EEE'"></span></div>
-    <div class="col"><weather-icon icon="day.icon"></weather-icon></div>
+    <div class="col"><jersey-icon icon="day.icon"></jersey-icon></div>
     <div class="col">
       <span class="temp-high">{{day.temperatureMax | tempInt}}&deg;</span>
       <span class="temp-low">{{day.temperatureMin | tempInt}}&deg;</span>
