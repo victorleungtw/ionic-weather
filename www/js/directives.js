@@ -1,18 +1,18 @@
 angular.module('ionic.fantasy.directives', [])
 
-.constant('WEATHER_ICONS', {
-  'partlycloudy': 'ion-ios7-partlysunny-outline',
-  'mostlycloudy': 'ion-ios7-partlysunny-outline',
-  'cloudy': 'ion-ios7-cloudy-outline',
-  'rain': 'ion-ios7-rainy-outline',
-  'tstorms': 'ion-ios7-thunderstorm-outline',
-  'sunny': 'ion-ios7-sunny-outline',
-  'clear-day': 'ion-ios7-sunny-outline',
-  'nt_clear': 'ion-ios7-moon-outline',
-  'clear-night': 'ion-ios7-moon-outline'
+.constant('JERSEY_ICON', {
+  'partlycloudy': 'ion-ios7-person-outline',
+  'mostlycloudy': 'ion-ios7-person-outline',
+  'cloudy': 'ion-ios7-person-outline',
+  'rain': 'ion-ios7-person-outline',
+  'tstorms': 'ion-ios7-person-outline',
+  'sunny': 'ion-ios7-person-outline',
+  'clear-day': 'ion-ios7-person-outline',
+  'nt_clear': 'ion-ios7-person-outline',
+  'clear-night': 'ion-ios7-person-outline'
 })
 
-.directive('weatherIcon', function(WEATHER_ICONS) {
+.directive('weatherIcon', function(JERSEY_ICON) {
   return {
     restrict: 'E',
     replace: true,
@@ -27,10 +27,10 @@ angular.module('ionic.fantasy.directives', [])
 
         var icon = v;
 
-        if(icon in WEATHER_ICONS) {
-          $scope.weatherIcon = WEATHER_ICONS[icon];
+        if(icon in JERSEY_ICON) {
+          $scope.weatherIcon = JERSEY_ICON[icon];
         } else {
-          $scope.weatherIcon = WEATHER_ICONS['cloudy'];
+          $scope.weatherIcon = JERSEY_ICON['cloudy'];
         }
       });
     }

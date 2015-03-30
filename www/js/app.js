@@ -16,7 +16,6 @@ angular.module('ionic.fantasy', ['ionic', 'ionic.fantasy.services', 'ionic.fanta
   var _this = this;
 
   $ionicPlatform.ready(function() {
-    // Hide the status bar
     if(window.StatusBar) {
       StatusBar.hide();
     }
@@ -52,7 +51,6 @@ angular.module('ionic.fantasy', ['ionic', 'ionic.fantasy.services', 'ionic.fanta
       if($scope.bgImages) {
         $scope.activeBgImage = $scope.bgImages[$scope.activeBgImageIndex++ % $scope.bgImages.length];
       }
-      //$timeout(cycle, 10000);
     });
   };
 
