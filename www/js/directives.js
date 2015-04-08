@@ -129,11 +129,29 @@ angular.module('ionic.fantasy.directives', [])
   return {
     restrict: 'A',
     link: function($scope, $element, $attr) {
-      var amt, st, header;
-      var bg = document.querySelector('.bg-image');
+      var amt, st, header, bg;
+     // var bgCollection = document.getElementsByClassName('bg-image');
+
+      //console.log("bgCollection is:" ,bgCollection)
+
+      /*if(bgCollection.length >0){
+        bg = bgCollection[0];
+        console.log('bg', bg);
+      }*/
+
       $element.bind('scroll', function(e) {
+      console.log("in scrollEffects")
         if(!header) {
           header = document.getElementById('header');
+        }
+        if(!bg){
+          bg = document.querySelector(".bg-image");
+/*          bgCollection = document.getElementsByClassName('bg-image');
+          if(bgCollection.length >0){
+            console.log("bgCollection is:" ,bgCollection)
+            bg = bgCollection[0];
+            console.log('bg', bg);
+          } */
         }
         st = e.detail.scrollTop;
         if(st >= 0) {
@@ -144,9 +162,13 @@ angular.module('ionic.fantasy.directives', [])
         amt = Math.min(0.6, st / 1000);
 
         ionic.requestAnimationFrame(function() {
-          header.style.opacty = 1 - amt;
+          console.log("header opacity: "+header.style.filter);
+          header.style.opacity = 1 - amt;
+          console.log("header opacity: "+header.style.filter);
           if(bg) {
+            console.log("bg opacity: "+bg.style.filter);
             bg.style.opacity = 1 - amt;
+            console.log("bg opacity: "+bg.style.filter);
           }
         });
       });
