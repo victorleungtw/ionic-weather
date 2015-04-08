@@ -163,7 +163,7 @@ angular.module('ionic.weather.directives', [])
         amt = Math.min(0.6, st / 1000);
 
         ionic.requestAnimationFrame(function() {
-          header.style.opacty = 1 - amt;
+          header.style.opacity = 1 - amt;
           if(bg) {
             bg.style.opacity = 1 - amt;
           }
